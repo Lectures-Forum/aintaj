@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الطالب</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>أدخل اسم الطالب</h1>
+        <input type="text" id="studentName" placeholder="اسم الطالب">
+        <button id="nextButton" disabled>التالي</button>
+    </div>
+
+    <script>
+        const studentNameInput = document.getElementById('studentName');
+        const nextButton = document.getElementById('nextButton');
+
+        studentNameInput.addEventListener('input', function() {
+            if (studentNameInput.value.trim() !== '') {
+                nextButton.disabled = false;
+            } else {
+                nextButton.disabled = true;
+            }
+        });
+
+        nextButton.addEventListener('click', function() {
+            if (!nextButton.disabled) {
+                const studentName = studentNameInput.value.trim();
+                localStorage.setItem('studentName', studentName);
+                window.location.href = 'index1.html';
+            }
+        });
+    </script>
+</body>
+</html>
